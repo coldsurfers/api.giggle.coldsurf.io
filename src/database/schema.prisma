@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model ArtContext {
+    id Int @id @default(autoincrement())
+    name String
+    artists Artist[]
+    venues Venue[]
+    coffees Coffee[]
+    tattooes Tattoo[]
+    movies Movie[]
+    musics Music[]
+    applications Application[]
+    softwareEngineerings SoftwareEngieering[]
+    instruments Instrument[]
+    createdAt DateTime @default(now())
+}
+
+// ArtContext - Artist
+model Artist {
+    id Int @id @default(autoincrement())
+    name String
+    images ArtistImage[]
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+model ArtistImage {
+    id Int @id @default(autoincrement())
+    imageURL String
+    artistId Int
+    artist Artist @relation(fields: [artistId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artistId])
+}
+
+model Gig {
+    id Int @id @default(autoincrement())
+    name String
+    images GigImage[]
+    venueId Int
+    venue Venue @relation(fields: [venueId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([venueId])
+}
+
+model GigImage {
+    id Int @id @default(autoincrement())
+    gigId Int
+    gig Gig @relation(fields: [gigId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([gigId])
+}
+
+// ArtContext - Venue
+model Venue {
+    id Int @id @default(autoincrement())
+    name String
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    gigs Gig[]
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - Coffee
+model Coffee {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - Tattoo
+model Tattoo {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - Movie
+model Movie {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - Music
+model Music {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - Application
+model Application {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - SoftwareEngineering
+model SoftwareEngieering {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
+
+// ArtContext - Instrument
+model Instrument {
+    id Int @id @default(autoincrement())
+    artContextId Int
+    artContext ArtContext @relation(fields: [artContextId], references: [id])
+    createdAt DateTime @default(now())
+
+    @@index([artContextId])
+}
