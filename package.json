@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.10.1",
+    "fastify": "^4.13.0",
     "prisma": "^4.10.1"
   },
   "scripts": {
