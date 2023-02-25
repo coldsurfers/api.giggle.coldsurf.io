@@ -19,14 +19,16 @@ model Event {
   promoterId Int?
   Venue      Venue?    @relation(fields: [venueId], references: [id])
   venueId    Int?
+  Artist     Artist?   @relation(fields: [artistId], references: [id])
+  artistId   Int?
 }
 
 model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  email String
-  password String?
+  email        String
+  password     String?
   passwordSalt String?
 }
 
@@ -38,6 +40,13 @@ model Venue {
 }
 
 model Promoter {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  events Event[]
+}
+
+model Artist {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
