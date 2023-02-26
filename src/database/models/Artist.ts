@@ -1,7 +1,9 @@
-import Event from "./Event"
+import Event from './Event'
 
 export default class Artist {
-    public id!: number
-    public createdAt!: Date
-    public events!: Event[]
+  public id!: number
+
+  public createdAt!: Date
+
+  public events!: Event[]
 }
