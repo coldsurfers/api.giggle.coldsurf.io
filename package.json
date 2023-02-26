@@ -30,6 +30,6 @@
     "build": "tsc",
     "vercel:sync-env:dev": "vercel env pull --environment=development",
     "vercel:sync-env:prod": "vercel env pull --environment=production",
-    "lint": "yarn eslint 'src/**/*.ts' --cache"
+    "lint": "yarn eslint 'src/**/*.ts' 'vercel/**/*.ts' --cache"
   }
 }
