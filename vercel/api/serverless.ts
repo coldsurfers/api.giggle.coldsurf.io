@@ -1,9 +1,12 @@
 import { VercelApiHandler, VercelRequest, VercelResponse } from '@vercel/node'
 import Fastify from 'fastify'
+import artistRoute from '../../src/routes/artist'
 
 const fastify = Fastify({
   logger: process.env.NODE_ENV === 'development',
 })
+
+fastify.register(artistRoute, { prefix: '/artist' })
 
 const handler: VercelApiHandler = async (
   req: VercelRequest,
