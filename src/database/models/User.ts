@@ -26,4 +26,32 @@ export default class User {
       return null
     }
   }
+
+  public static async findById(id: number) {
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          id,
+        },
+      })
+      return user
+    } catch (e) {
+      console.error(e)
+      return null
+    }
+  }
+
+  public static async findByEmail(email: string) {
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          email,
+        },
+      })
+      return user
+    } catch (e) {
+      console.error(e)
+      return null
+    }
+  }
 }
